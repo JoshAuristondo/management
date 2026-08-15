@@ -1,0 +1,468 @@
+.wod
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    padding: 3.25rem 0 0 0; 
+    overflow: hidden;
+    transition: padding 0.25s ease-in-out;
+
+    gap: 1em;
+
+
+    &__content
+    {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: stretch;
+        gap: 1.25rem;
+
+        width: 100%;
+        height: 100%;
+
+        padding: 1.25rem;
+
+        overflow-y: auto;
+        
+        scrollbar-width: thin;
+    }
+
+    &__topbar
+    {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: end;
+        flex-wrap: wrap;
+        gap: .5rem;
+
+        width: 100%;
+
+        padding: 0 1.75rem;
+        
+        height: 3.25rem;
+        
+    }
+
+    &__back
+    {
+        cursor: pointer;
+        font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 12px;
+        color: var(--color-text);
+        text-decoration: none;
+
+        transition: all 0.15s ease-in-out;
+
+        &:hover
+        {
+            text-decoration: underline;
+            color: var(--color-secondary);
+        }
+    }
+
+    &__title
+    {
+        font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 14px;
+        color: var(--color-text);
+    }
+
+    &__state
+    {
+        padding: 2rem 0;
+        text-align: center;
+
+        font-family: "Inconsolata", monospace;
+        font-size: 20px;
+
+        color: var(--color-text);
+
+        &--loading
+        {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: fit-content;
+            height: 50px;
+            gap: 0.5rem;
+
+            transform: translate(-50%, -50%);
+        }
+
+        &--error
+        {
+            color: var(--color-error);
+            font-size: 18px;
+            font-weight: 500;
+        }
+    }
+
+    &__banner
+    {
+        font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 12px;
+        padding: .5rem .75rem;
+        border-radius: .375rem;
+
+        &--error
+        {
+            background-color: rgba(255, 80, 80, .12);
+            border: 1px solid rgba(255, 80, 80, .4);
+            color: #ff8080;
+        }
+
+        &--success
+        {
+            background-color: rgba(80, 200, 120, .12);
+            border: 1px solid rgba(80, 200, 120, .4);
+            color: #7fe0a0;
+        }
+    }
+
+    // --- Formulario --------------------------------------------------
+
+    &__form
+    {
+        display: flex;
+        flex-direction: column;
+        gap: .85rem;
+    }
+
+    &__field-group
+    {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: .85rem;
+
+        @media screen and (max-width: 512px)
+        {
+            flex-direction: column;
+        }
+    }
+
+    &__field
+    {
+        display: flex;
+        flex-direction: column;
+        gap: .3rem;
+        flex: 1 1 180px;
+        min-width: 0;
+
+        &--readonly
+        {
+            justify-content: center;
+        }
+
+        &--full
+        {
+            flex: 1 1 100%;
+        }
+
+        &--toggle
+        {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: .5rem;
+        }
+    }
+
+    &__label
+    {
+        font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: .05em;
+        color: var(--color-text);
+        white-space: nowrap;
+    }
+
+    &__value
+    {
+        font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 13px;
+        color: var(--color-text);
+
+        &--total
+        {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+    }
+
+    &__input,
+    &__select,
+    &__textarea
+    {
+        width: 100%;
+        background-color: color-mix(in oklab, #fff 5%, transparent);
+        border: 1px solid var(--color-text);
+        border-radius: 6px;
+        padding: .5rem .6rem;
+
+        font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 12px;
+        color: var(--color-text);
+
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+
+        &:disabled
+        {
+            opacity: .5;
+        }
+
+        &:focus
+        {
+            border-color: var(--color-primary);
+        }
+    }
+
+    &__textarea
+    {
+        resize: vertical;
+    }
+
+    &__toggle
+    {
+        cursor: pointer;
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+
+        width: 50px;
+        height: 28px;
+        border: none;
+        border-radius: 5px;
+
+        font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 10px;
+        background-color: #703434;
+        color: var(--color-bg);
+
+        &[aria-checked="true"]
+        {
+            background-color: #2f6b3f;
+        }
+
+        &:disabled
+        {
+            opacity: .5;
+            cursor: not-allowed;
+        }
+    }
+
+    // --- Acciones (guardar / descartar) -------------------------------
+
+    &__actions
+    {
+        display: flex;
+        flex-direction: row;
+        gap: .75rem;
+    }
+
+    &__button
+    {
+        cursor: pointer;
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+        border: 1px solid var(--color-tertiary);
+        border-radius: .375rem;
+        padding: .5rem 1rem;
+
+        font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 12px;
+
+        background-color: transparent;
+        color: var(--color-text);
+
+        &:hover:not(:disabled)
+        {
+            background-color: var(--color-primary);
+            color: var(--color-text);
+        }
+
+        &:disabled
+        {
+            opacity: .4;
+            cursor: not-allowed;
+        }
+
+        &--save
+        {
+            background-color: var(--color-tertiary);
+            color: var(--color-bg);
+
+            &:hover:not(:disabled)
+            {
+                opacity: .85;
+                background-color: var(--color-primary);
+            }
+        }
+
+        &--delete
+        {
+            border-color: #ff8080;
+            color: #ff8080;
+
+            &:hover:not(:disabled)
+            {
+                background-color: #ff8080;
+                color: #1f1f1f;
+            }
+        }
+
+        &--delete-confirm
+        {
+            background-color: #ff8080;
+            color: #1f1f1f;
+        }
+    }
+
+    &__section-divider
+    {
+        width: 100%;
+        height: 2px;
+        background-color: var(--color-dotted-line);
+    }
+
+    // --- Adjuntos ------------------------------------------------------
+
+    &__attachments
+    {
+        display: flex;
+        flex-direction: column;
+        gap: .75rem;
+    }
+
+    &__attachments-header
+    {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: .5rem;
+        flex-wrap: wrap;
+    }
+
+    &__file-input
+    {
+        display: none;
+    }
+
+    &__attachments-empty
+    {
+        font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 12px;
+        color: var(--color-primary);
+        padding: 1rem 0;
+    }
+
+    &__attachments-list
+    {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    &__attachment
+    {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: .75rem;
+        padding: .5rem;
+        border: 1px solid #232323;
+        border-radius: 6px;
+        background-color: color-mix(in oklab, #fff 3%, transparent);
+    }
+
+    &__attachment-preview
+    {
+        width: 36px;
+        height: 36px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        overflow: hidden;
+        background-color: #0b0b0b;
+    }
+
+    &__attachment-thumb
+    {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__attachment-badge
+    {
+        font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 9px;
+        color: #9a9a9a;
+
+        &--pdf
+        {
+            color: #ff8080;
+        }
+    }
+
+    &__attachment-info
+    {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-width: 0;
+        gap: .1rem;
+    }
+
+    &__attachment-name
+    {
+        font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 12px;
+        color: var(--color-text);
+        text-decoration: none;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        &:hover
+        {
+            color: var(--color-secondary);
+        }
+    }
+
+    &__attachment-meta
+    {
+        font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 10px;
+        color: var(--color-text);
+    }
+
+    &__danger-zone
+    {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: .5rem;
+    }
+
+    &__danger-zone-text
+    {
+        font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 12px;
+        color: var(--color-error);
+    }
+}
