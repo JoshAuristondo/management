@@ -75,7 +75,7 @@ export default function New() {
                     <button type="button" className="wod__button wod__button--save" onClick={handleCreate} disabled={!isValid || saving}>
                         {saving ? "Creando…" : "Crear orden de trabajo"}
                     </button>
-                    <Link href="/tables" className="wod__button wod__button--cancel">
+                    <Link href="/dashboard" className="wod__button wod__button--cancel">
                         Cancelar
                     </Link>
                 </div>

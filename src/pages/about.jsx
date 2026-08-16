@@ -1,5 +1,5 @@
 import "../styles/about.scss"
-import { Link } from "wouter"
+
 
 const About = () => {
     return (

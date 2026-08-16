@@ -1,5 +1,5 @@
 {
-  "name": "management",
+  "name": "workorganizer",
   "private": true,
   "version": "1.0.1",
   "type": "module",
@@ -31,16 +31,31 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.4",
     "babel-plugin-react-compiler": "^1.0.0",
+    "concurrently": "^10.0.5",
+    "electron": "^43.4.0",
+    "electron-builder": "^26.15.3",
     "oxlint": "^1.75.0",
-    "vite": "^8.2.0"
+    "vite": "^8.2.0",
+    "wait-on": "^9.1.0"
   },
   "build": {
     "appId": "com.EphemeralJosh.workorganizer",
     "productName": "Work Organizer",
-    "files": ["dist/**/*", "electron/**/*"],
-    "directories": { "output": "release" },
-    "mac": { "target": "dmg" },
-    "win": { "target": "nsis" },
-    "linux": { "target": "AppImage" }
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
   }
 }
